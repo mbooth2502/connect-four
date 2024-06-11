@@ -36,3 +36,7 @@ This game is entirely command-line based and can be ran from the main game file 
 To run 'connect_four_game.py' in VS Code either:
 - Ctrl + F5
 - (type in the terminal): py connect_four_game.py
+
+
+Enter row count, column count, winning length.
+Then play.
