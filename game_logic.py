@@ -1,3 +1,7 @@
+# Game Logic
+# Mason Booth 2024/06/11
+
+
 # grid size limits
 GRID_MIN = 5
 GRID_MAX = 10

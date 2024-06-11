@@ -1,3 +1,6 @@
+# Connect-Four Main Game
+# Mason Booth 2024/06/11
+
 
 import numpy as np 
 from game_logic import is_valid_config, check_win
