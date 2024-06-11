@@ -8,6 +8,8 @@ WINNING_MAX = 5
 
 
 # check users config. parameters meet pre-limits
+# returns true if all values within limits
+# returns false with an error message, otherwise
 def is_valid_config(row_count, column_count, winning_length):
     # Check grid size is greater than min but lower than max
     if (row_count < GRID_MIN or row_count > GRID_MAX or
@@ -24,6 +26,7 @@ def is_valid_config(row_count, column_count, winning_length):
 
 
 # method to check if a player has won after each move
+# returns false unless player has a row of winning_length in ANY direction
 def check_win(grid, player, winning_length):
     # Check for horizontal win
     for row in grid:

@@ -11,8 +11,6 @@ COLUMN_COUNT = 0
 WINNING_LENGTH = 0
 
 
-
-
 # min and max config. sizes for user
 def initial_message():
     print("\nGrid Size Limits")
@@ -75,8 +73,6 @@ def initialise_new_game():
     return grid, winning_length 
 
 
-
-
 # check if chosen position for piece is valid  
 def is_valid_place(grid, col):  
     # returns true (valid) if col is: 
@@ -111,13 +107,13 @@ def get_next_open_row(grid, col):
 # main loop
 if __name__ == "__main__": 
 
-    # indicate min and max selections for user
+    # indicate min and max selections for user through initial_message
     initial_message()
 
     while True:  # Add a loop to restart the game after a win
         grid, winning_length = initialise_new_game() 
 
-        print(" ")
+        print(" ") # one-off message to show starting grid
         print("Initial Game Grid:")
         print_board(grid) 
 
@@ -154,7 +150,6 @@ if __name__ == "__main__":
 
                 # Switch to the next player 
                 current_player = 2 if current_player == 1 else 1 
-                
             else: 
                 print("Invalid column. Please choose a valid column.") 
 
