@@ -1,4 +1,6 @@
 # connect-four
+Mason Booth
+2024/06/11
 
 # Cover Note
 For the implementation of my Connect Four game, I chose to use Python as my sole programming language.
@@ -8,7 +10,7 @@ Python's array manipulation capabilities allowed me to perform dynamic checks fo
 
 
 # Game Choices
-In this command line representation of Connect Four, pieces placed in the grid are represented as 1's or 2's, depending on the player's turn. Empty spaces in the grid are represented as 0's (every space when the game is initialised). The use of integers here instead of characters (R and Y) removed the possibility of any type clashes within my code. In a graphical representation of my code, I would have stook to the typical colours.
+In this command line representation of Connect Four, pieces placed in the grid are represented as 1's or 2's, depending on the player's turn. Empty spaces in the grid are represented as 0's (every space when the game is initialised). The use of integers here instead of characters (R and Y) removed the possibility of any type clashes within my code. In a graphical representation of my code, I would have stuck to the typical colours.
 
 To keep games to a reasonable size/complexity, I set limitations for both the grid size (rows and columns) and the winning length. The minimum grid size is equivalent to the maximum winning row length to ensure all games can be won successfully.
 
@@ -18,6 +20,7 @@ Throughout the game there are several prompts to ensure these requirements are m
 # Tests
 - Create table too small/large
 - Set a winning length too small/large
+- Place a piece in an already full column
 - Place a piece in an invalid integer column (lower or greater than limit)
 - Place a piece in an (invalid) character column
 
