@@ -1,1 +1,3 @@
 # connect-four
+
+# (Optional section)

@@ -124,34 +124,39 @@ if __name__ == "__main__":
         while True: 
             # Player selects a column to place their piece 
             print(" ")
-            column_input = int(input(f"Player {current_player}, choose a column to place your piece (1-{COLUMN_COUNT}): ")) 
+            while True:  # Loop until valid input is received
+                column_input = input(f"Player {current_player}, choose a column to place your piece (1-{COLUMN_COUNT}): ")
 
-            # correct column_input
-            column = column_input - 1
+                # Check if the input is a valid integer
+                if column_input.isdigit():
+                    column = int(column_input) - 1
 
-            # Check if the selected column is valid 
-            if is_valid_place(grid, column): 
+                    # Check if the selected column is valid 
+                    if 0 <= column < COLUMN_COUNT and is_valid_place(grid, column):
+                        break  # Exit the input loop if input is valid
+                    else: 
+                        print("Invalid column. Please choose a valid column.")
+                else:
+                    print("Invalid input. Please enter a valid number.") 
 
-                # Get the next open row in the selected column 
-                row = get_next_open_row(grid, column) 
+            # Get the next open row in the selected column 
+            row = get_next_open_row(grid, column) 
 
-                # Place the player's piece in the grid 
-                place_piece(grid, row, column, current_player) 
+            # Place the player's piece in the grid 
+            place_piece(grid, row, column, current_player) 
 
-                # Print the updated grid 
+            # Print the updated grid 
+            print(" ")
+            print_board(grid) 
+
+            # Check for winning condition 
+            if check_win(grid, current_player, WINNING_LENGTH):
                 print(" ")
-                print_board(grid) 
+                print(f"Player {current_player} wins!")
+                break  # Break out of the game loop if a player wins
 
-                # Check for winning condition 
-                if (check_win(grid,current_player,WINNING_LENGTH)):
-                    print(" ")
-                    print(f"Player {current_player} wins!")
-                    break  # Break out of the game loop if a player wins
-
-                # Switch to the next player 
-                current_player = 2 if current_player == 1 else 1 
-            else: 
-                print("Invalid column. Please choose a valid column.") 
+            # Switch to the next player 
+            current_player = 2 if current_player == 1 else 1 
 
         # Ask the players if they want to play again
         play_again = input("Do you want to play again? (yes/no): ")
