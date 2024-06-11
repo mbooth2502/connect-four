@@ -1,4 +1,6 @@
 # connect-four
+Mason Booth
+2024/06/11
 
 # Cover Note
 For the implementation of my Connect Four game, I chose to use Python as my sole programming language.
@@ -18,6 +20,7 @@ Throughout the game there are several prompts to ensure these requirements are m
 # Tests
 - Create table too small/large
 - Set a winning length too small/large
+- Place a piece in an already full column
 - Place a piece in an invalid integer column (lower or greater than limit)
 - Place a piece in an (invalid) character column
 
