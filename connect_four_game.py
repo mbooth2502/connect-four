@@ -1,20 +1,16 @@
 
 import numpy as np 
-from game_logic import check_win
+from game_logic import is_valid_config, check_win
 
 
 # size of the grid 
 ROW_COUNT = 0 
 COLUMN_COUNT = 0 
-# grid size limits
-GRID_MIN = 5
-GRID_MAX = 10
 
 # length of row needed to win game 
 WINNING_LENGTH = 0
-# winning row limits
-WINNING_MIN = 2
-WINNING_MAX = 5
+
+
 
 
 # min and max config. sizes for user
@@ -23,7 +19,6 @@ def initial_message():
     print("Minimum Size: 5x5, Maximum Size: 10x10")
     print("\nWinning Length Limits")
     print("Minimum Length: 2, Maximum Length: 5")
-
 
 
 # allow player(s) to configure game's: 
@@ -39,23 +34,14 @@ def configure_game():
         COLUMN_COUNT = int(input("Enter the number of columns for the grid: ")) 
         WINNING_LENGTH = int(input("Enter the winning length for a row: ")) 
 
-        # Check if the grid size is within limits
-        if ROW_COUNT < GRID_MIN or ROW_COUNT > GRID_MAX or COLUMN_COUNT < GRID_MIN or COLUMN_COUNT > GRID_MAX:
-            print(f"Grid size must be between {GRID_MIN}x{GRID_MIN} and {GRID_MAX}x{GRID_MAX}. Please try again.")
+        if is_valid_config(ROW_COUNT, COLUMN_COUNT, WINNING_LENGTH):
+            break  # Break out of the loop if the configuration is valid
+        else:
+            print(f"Grid size must be between 5x5 and 10x10.")
+            print(f"Winning row length must be between 2 and 5. Please try again.")
             print(" ")
-            continue
-        
-        # Check if the winning row length is within limits
-        if WINNING_LENGTH < WINNING_MIN or WINNING_LENGTH > WINNING_MAX:
-            print(f"Winning row length must be between {WINNING_MIN} and {WINNING_MAX}. Please try again.")
-            print(" ")
-            continue
-        
-        # If both conditions are met, break out of the loop
-        break
 
     return ROW_COUNT, COLUMN_COUNT, WINNING_LENGTH 
-
 
 
 # create initial grid based on size parameters 
