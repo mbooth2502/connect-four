@@ -1,5 +1,7 @@
 
 import numpy as np 
+from game_logic import check_win
+
 
 # size of the grid 
 ROW_COUNT = 0 
@@ -20,7 +22,7 @@ def initial_message():
     print("\nGrid Size Limits")
     print("Minimum Size: 5x5, Maximum Size: 10x10")
     print("\nWinning Length Limits")
-    print("Minimum Length: 2, Maximum Length: 5\n")
+    print("Minimum Length: 2, Maximum Length: 5")
 
 
 
@@ -32,6 +34,7 @@ def configure_game():
 
     while True:
         # Take player's inputs
+        print(" ")
         ROW_COUNT = int(input("Enter the number of rows for the grid: ")) 
         COLUMN_COUNT = int(input("Enter the number of columns for the grid: ")) 
         WINNING_LENGTH = int(input("Enter the winning length for a row: ")) 
@@ -125,42 +128,51 @@ if __name__ == "__main__":
     # indicate min and max selections for user
     initial_message()
 
-    grid, winning_length = initialise_new_game() 
+    while True:  # Add a loop to restart the game after a win
+        grid, winning_length = initialise_new_game() 
 
-    print(" ")
-    print("Initial Game Grid:")
-    print_board(grid) 
-
-
-    # Variable to keep track of the current player (1 or 2) 
-    current_player = 1 
-
-    # Game loop 
-    while True: 
-        # Player selects a column to place their piece 
         print(" ")
-        column_input = int(input(f"Player {current_player}, choose a column to place your piece (1-{COLUMN_COUNT}): ")) 
+        print("Initial Game Grid:")
+        print_board(grid) 
 
-        # correct column_input
-        column = column_input - 1
+        # Variable to keep track of the current player (1 or 2) 
+        current_player = 1 
 
-
-        # Check if the selected column is valid 
-        if is_valid_place(grid, column): 
-
-            # Get the next open row in the selected column 
-            row = get_next_open_row(grid, column) 
-
-            # Place the player's piece in the grid 
-            place_piece(grid, row, column, current_player) 
-
-            # Print the updated grid 
+        # Game loop 
+        while True: 
+            # Player selects a column to place their piece 
             print(" ")
-            print_board(grid) 
+            column_input = int(input(f"Player {current_player}, choose a column to place your piece (1-{COLUMN_COUNT}): ")) 
 
-            # Check for win condition (not implemented in this example) 
+            # correct column_input
+            column = column_input - 1
 
-            # Switch to the next player 
-            current_player = 2 if current_player == 1 else 1 
-        else: 
-            print("Invalid column. Please choose a valid column.") 
+            # Check if the selected column is valid 
+            if is_valid_place(grid, column): 
+
+                # Get the next open row in the selected column 
+                row = get_next_open_row(grid, column) 
+
+                # Place the player's piece in the grid 
+                place_piece(grid, row, column, current_player) 
+
+                # Print the updated grid 
+                print(" ")
+                print_board(grid) 
+
+                # Check for winning condition 
+                if (check_win(grid,current_player,WINNING_LENGTH)):
+                    print(" ")
+                    print(f"Player {current_player} wins!")
+                    break  # Break out of the game loop if a player wins
+
+                # Switch to the next player 
+                current_player = 2 if current_player == 1 else 1 
+                
+            else: 
+                print("Invalid column. Please choose a valid column.") 
+
+        # Ask the players if they want to play again
+        play_again = input("Do you want to play again? (yes/no): ")
+        if play_again.lower() != "yes":
+            break  # Break out of the restart loop if the players don't want to play again
